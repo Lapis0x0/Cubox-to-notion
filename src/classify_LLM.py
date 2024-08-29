@@ -1,9 +1,9 @@
 import os
 import shutil
-from openai import OpenAI  # 假设使用DeepSeek API
+from openai import OpenAI  
 
 def init_client(api_key, base_url):
-    """初始化并返回DeepSeek客户端"""
+    """初始化并返回OpenAI客户端"""
     return OpenAI(api_key=api_key, base_url=base_url)
 
 def read_markdown_content(file_path, max_chars=200):
@@ -21,7 +21,7 @@ def read_markdown_content(file_path, max_chars=200):
     return title, content[:max_chars]
 
 def get_file_label(title, content, predefined_labels, client, model):
-    """使用DeepSeek API从预定义标签中选择文件标签"""
+    """使用OpenAI API从预定义标签中选择文件标签"""
     labels_str = ", ".join(predefined_labels)
     try:
         response = client.chat.completions.create(
@@ -55,5 +55,3 @@ def organize_files(source_folder, target_folder, predefined_labels, client, mode
             # 复制文件
             shutil.copy(file_path, os.path.join(label_folder, filename))
             print(f"已将文件 {filename} 复制到 {label} 文件夹")
-
-# 删除这里的使用示例，因为现在从main.py调用
