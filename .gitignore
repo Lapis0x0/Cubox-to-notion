@@ -1,0 +1,7 @@
+venv
+分类结果
+需要分类的文件
+.DS_Store
+src/__pycache__
+test.py
+src/upload.py
